@@ -10,11 +10,30 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
+    var ListData:[String:Array<String>] = [:]
+    var List:[[String:String]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let Report = "http://yanyu-chinf.azurewebsites.net/api/report"
+        
         if UserDefaults.standard.bool(forKey: "session") {
-            
+            let data = "data=ID,reportname,reportbody".data(using: .utf8)
+            DataTask.init().requestWithModel(stringURL: Report, httpBody: data!, model: Model.HTTP.POST, completion: { (json) in
+                self.ListData = JsonData().getData(json: json)!
+                
+                for index in 0 ... (self.ListData.count-1) {
+                    self.List.append([:])
+                    for (key,value) in self.ListData {
+                        self.List[index][key] = value[index]
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            })
         }else{
             if let LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as? ViewController{
                 present(LoginViewController, animated: true, completion: nil)
@@ -37,14 +56,14 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return List.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
 
-        cell.label.text = "YanYu - Test - \(indexPath.row)"
+        cell.label.text = "YanYu - Test - \(List[indexPath.row]["reportname"]!)"
 
         return cell
     }
@@ -53,6 +72,32 @@ class TableViewController: UITableViewController {
         return 155
     }
     
+    // touch row
+    override func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
+        //        cell.alpha = 1
+        UIView.animate(withDuration: 0.1, animations: {
+            //            self.cardView.backgroundColor = .brown
+            cell.cardView.bounds.size.width /= 0.98
+            cell.cardView.bounds.size.height /= 0.98
+            //            self.cardView.frame.size.width *= 0.8
+            //            self.cardView.frame.size.height *= 0.8
+        }, completion: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath){
+        
+        let cell = tableView.cellForRow(at: indexPath) as! TableViewCell
+        //        cell.alpha = 0.3
+        UIView.animate(withDuration: 0.1, animations: {
+            //            self.cardView.backgroundColor = .brown
+            cell.cardView.bounds.size.width *= 0.98
+            cell.cardView.bounds.size.height *= 0.98
+            //            self.cardView.frame.size.width *= 0.8
+            //            self.cardView.frame.size.height *= 0.8
+        }, completion: nil)
+    }
 
     /*
     // Override to support conditional editing of the table view.

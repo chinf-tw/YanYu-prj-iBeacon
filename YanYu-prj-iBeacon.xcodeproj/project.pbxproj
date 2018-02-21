@@ -17,6 +17,9 @@
 		14DE9B30203D012E00FE69FE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B2F203D012E00FE69FE /* TableViewController.swift */; };
 		14DE9B32203D01CA00FE69FE /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B31203D01CA00FE69FE /* TableViewCell.swift */; };
 		14DE9B3B203D0C6700FE69FE /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9B3A203D0C6700FE69FE /* List.storyboard */; };
+		14DE9B3D203D21DF00FE69FE /* Internet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B3C203D21DF00FE69FE /* Internet.swift */; };
+		14DE9B3F203D23DA00FE69FE /* JsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B3E203D23DA00FE69FE /* JsonData.swift */; };
+		14DE9B41203D250100FE69FE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B40203D250100FE69FE /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		14DE9B2F203D012E00FE69FE /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		14DE9B31203D01CA00FE69FE /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		14DE9B3A203D0C6700FE69FE /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		14DE9B3C203D21DF00FE69FE /* Internet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internet.swift; sourceTree = "<group>"; };
+		14DE9B3E203D23DA00FE69FE /* JsonData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
+		14DE9B40203D250100FE69FE /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,9 @@
 				14DE9B24203CFF8300FE69FE /* LaunchScreen.storyboard */,
 				14DE9B27203CFF8300FE69FE /* Info.plist */,
 				14DE9B1F203CFF8300FE69FE /* YanYu_prj_iBeacon.xcdatamodeld */,
+				14DE9B3C203D21DF00FE69FE /* Internet.swift */,
+				14DE9B40203D250100FE69FE /* Model.swift */,
+				14DE9B3E203D23DA00FE69FE /* JsonData.swift */,
 			);
 			path = "YanYu-prj-iBeacon";
 			sourceTree = "<group>";
@@ -171,7 +180,10 @@
 				14DE9B1B203CFF8200FE69FE /* ViewController.swift in Sources */,
 				14DE9B19203CFF8200FE69FE /* AppDelegate.swift in Sources */,
 				14DE9B2E203D00B400FE69FE /* CardView.swift in Sources */,
+				14DE9B41203D250100FE69FE /* Model.swift in Sources */,
+				14DE9B3D203D21DF00FE69FE /* Internet.swift in Sources */,
 				14DE9B32203D01CA00FE69FE /* TableViewCell.swift in Sources */,
+				14DE9B3F203D23DA00FE69FE /* JsonData.swift in Sources */,
 				14DE9B30203D012E00FE69FE /* TableViewController.swift in Sources */,
 				14DE9B21203CFF8300FE69FE /* YanYu_prj_iBeacon.xcdatamodeld in Sources */,
 			);
