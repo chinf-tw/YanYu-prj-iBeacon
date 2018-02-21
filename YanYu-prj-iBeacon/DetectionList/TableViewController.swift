@@ -18,6 +18,8 @@ class TableViewController: UITableViewController {
         
         let Report = "http://yanyu-chinf.azurewebsites.net/api/report"
         
+        
+        
         if UserDefaults.standard.bool(forKey: "session") {
             let data = "data=ID,reportname,reportbody".data(using: .utf8)
             DataTask.init().requestWithModel(stringURL: Report, httpBody: data!, model: Model.HTTP.POST, completion: { (json) in
@@ -63,8 +65,11 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
 
-        cell.label.text = "YanYu - Test - \(List[indexPath.row]["reportname"]!)"
+        cell.ID.text = "報表編號 : \(List[indexPath.row]["ID"]!)"
+        cell.Name.text = "報表名稱 : \(List[indexPath.row]["reportname"]!)"
+        cell.Body.text = "報表內容 : \(List[indexPath.row]["reportbody"]!)"
 
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
     }
     

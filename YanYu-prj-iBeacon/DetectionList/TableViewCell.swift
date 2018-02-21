@@ -12,7 +12,9 @@ class TableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var cardView: CardView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var ID: UILabel!
+    @IBOutlet weak var Name: UILabel!
+    @IBOutlet weak var Body: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
