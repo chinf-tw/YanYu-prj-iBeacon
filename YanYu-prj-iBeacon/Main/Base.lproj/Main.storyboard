@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6YP-tW-WCJ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="MNJ-tH-g0H">
+            <objects>
+                <viewController id="6YP-tW-WCJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Owj-Iw-Sgu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7G-Pl-G50" customClass="CardView" customModule="YanYu_prj_iBeacon" customModuleProvider="target">
+                                <rect key="frame" x="67" y="191" width="240" height="259"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入帳號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pwf-S1-gUE">
+                                        <rect key="frame" x="19" y="127" width="203" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u7B-Et-3JE">
+                                        <rect key="frame" x="19" y="165" width="203" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKV-dp-YSX">
+                                        <rect key="frame" x="105" y="203" width="31" height="30"/>
+                                        <state key="normal" title="登入"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="u7B-Et-3JE" firstAttribute="top" secondItem="pwf-S1-gUE" secondAttribute="bottom" constant="8" symbolic="YES" id="1eE-eJ-swa"/>
+                                    <constraint firstAttribute="bottom" secondItem="bKV-dp-YSX" secondAttribute="bottom" constant="26" id="1uN-ZJ-sxy"/>
+                                    <constraint firstItem="bKV-dp-YSX" firstAttribute="top" secondItem="u7B-Et-3JE" secondAttribute="bottom" constant="8" symbolic="YES" id="6Vh-UC-z7v"/>
+                                    <constraint firstAttribute="width" secondItem="n7G-Pl-G50" secondAttribute="height" multiplier="240:259" id="M5T-PN-qsA"/>
+                                    <constraint firstItem="pwf-S1-gUE" firstAttribute="centerX" secondItem="n7G-Pl-G50" secondAttribute="centerX" id="MdI-ro-rCk"/>
+                                    <constraint firstItem="u7B-Et-3JE" firstAttribute="centerX" secondItem="bKV-dp-YSX" secondAttribute="centerX" id="SwR-Gf-tvd"/>
+                                    <constraint firstItem="pwf-S1-gUE" firstAttribute="trailing" secondItem="u7B-Et-3JE" secondAttribute="trailing" id="YKI-ES-Ucs"/>
+                                    <constraint firstItem="pwf-S1-gUE" firstAttribute="leading" secondItem="u7B-Et-3JE" secondAttribute="leading" id="aqE-gk-aMx"/>
+                                    <constraint firstItem="pwf-S1-gUE" firstAttribute="leading" secondItem="n7G-Pl-G50" secondAttribute="leading" constant="19" id="fwe-cB-HqA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="n7G-Pl-G50" firstAttribute="leading" secondItem="FpP-2f-YXz" secondAttribute="leading" constant="67" id="6rb-WB-Uvt"/>
+                            <constraint firstItem="n7G-Pl-G50" firstAttribute="centerX" secondItem="Owj-Iw-Sgu" secondAttribute="centerX" id="RnY-3x-2xq"/>
+                            <constraint firstItem="FpP-2f-YXz" firstAttribute="bottom" secondItem="n7G-Pl-G50" secondAttribute="bottom" constant="217" id="duo-oK-CkI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FpP-2f-YXz"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qFg-Ss-7iM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-575.20000000000005" y="-295.50224887556226"/>
+        </scene>
+    </scenes>
+</document>

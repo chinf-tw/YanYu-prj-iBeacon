@@ -16,6 +16,7 @@
 		14DE9B2E203D00B400FE69FE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B2D203D00B400FE69FE /* CardView.swift */; };
 		14DE9B30203D012E00FE69FE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B2F203D012E00FE69FE /* TableViewController.swift */; };
 		14DE9B32203D01CA00FE69FE /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B31203D01CA00FE69FE /* TableViewCell.swift */; };
+		14DE9B3B203D0C6700FE69FE /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9B3A203D0C6700FE69FE /* List.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		14DE9B2D203D00B400FE69FE /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		14DE9B2F203D012E00FE69FE /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		14DE9B31203D01CA00FE69FE /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		14DE9B3A203D0C6700FE69FE /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,17 +65,34 @@
 			isa = PBXGroup;
 			children = (
 				14DE9B18203CFF8200FE69FE /* AppDelegate.swift */,
-				14DE9B1A203CFF8200FE69FE /* ViewController.swift */,
 				14DE9B2D203D00B400FE69FE /* CardView.swift */,
-				14DE9B1C203CFF8200FE69FE /* Main.storyboard */,
-				14DE9B2F203D012E00FE69FE /* TableViewController.swift */,
-				14DE9B31203D01CA00FE69FE /* TableViewCell.swift */,
+				14DE9B39203D0BC800FE69FE /* Main */,
+				14DE9B36203D0AF800FE69FE /* DetectionList */,
 				14DE9B22203CFF8300FE69FE /* Assets.xcassets */,
 				14DE9B24203CFF8300FE69FE /* LaunchScreen.storyboard */,
 				14DE9B27203CFF8300FE69FE /* Info.plist */,
 				14DE9B1F203CFF8300FE69FE /* YanYu_prj_iBeacon.xcdatamodeld */,
 			);
 			path = "YanYu-prj-iBeacon";
+			sourceTree = "<group>";
+		};
+		14DE9B36203D0AF800FE69FE /* DetectionList */ = {
+			isa = PBXGroup;
+			children = (
+				14DE9B2F203D012E00FE69FE /* TableViewController.swift */,
+				14DE9B31203D01CA00FE69FE /* TableViewCell.swift */,
+				14DE9B3A203D0C6700FE69FE /* List.storyboard */,
+			);
+			path = DetectionList;
+			sourceTree = "<group>";
+		};
+		14DE9B39203D0BC800FE69FE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				14DE9B1A203CFF8200FE69FE /* ViewController.swift */,
+				14DE9B1C203CFF8200FE69FE /* Main.storyboard */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +157,7 @@
 				14DE9B26203CFF8300FE69FE /* LaunchScreen.storyboard in Resources */,
 				14DE9B23203CFF8300FE69FE /* Assets.xcassets in Resources */,
 				14DE9B1E203CFF8200FE69FE /* Main.storyboard in Resources */,
+				14DE9B3B203D0C6700FE69FE /* List.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
