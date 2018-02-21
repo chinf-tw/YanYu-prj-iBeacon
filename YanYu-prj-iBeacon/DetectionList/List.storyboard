@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--檢測內容報表-->
         <scene sceneID="8Eo-nW-uI2">
             <objects>
                 <tableViewController id="oaE-eV-HDA" customClass="TableViewController" customModule="YanYu_prj_iBeacon" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,10 +61,35 @@
                             <outlet property="delegate" destination="oaE-eV-HDA" id="TKo-Fk-iA8"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="檢測內容報表" id="Q95-2I-vp4">
+                        <barButtonItem key="rightBarButtonItem" title="登出" id="u3C-my-7jx">
+                            <connections>
+                                <action selector="LoginOut:" destination="oaE-eV-HDA" id="7vx-ZH-ovF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQb-xS-o3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="269.60000000000002" y="-294.60269865067471"/>
+            <point key="canvasLocation" x="608.79999999999995" y="-294.60269865067471"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5Tr-fr-AQP">
+            <objects>
+                <navigationController storyboardIdentifier="List" automaticallyAdjustsScrollViewInsets="NO" id="Ssa-re-G9E" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="XN8-Qo-lRO">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oaE-eV-HDA" kind="relationship" relationship="rootViewController" id="D3K-2p-ywa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y4Z-Ax-5fp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-118" y="-295"/>
         </scene>
     </scenes>
 </document>
