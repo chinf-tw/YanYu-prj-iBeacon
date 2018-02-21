@@ -71,6 +71,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         switch state {
         case .inside:
             print("inside \(region.identifier)")
+            if CLLocationManager.isRangingAvailable() {
+                manager.startRangingBeacons(in: region as! CLBeaconRegion)
+                
+                // Store the beacon so that ranging can be stopped on demand.
+                //                beaconsToRange.append(region as! CLBeaconRegion)
+            }
         case .outside:
             print("outside \(region.identifier)")
         case .unknown:
