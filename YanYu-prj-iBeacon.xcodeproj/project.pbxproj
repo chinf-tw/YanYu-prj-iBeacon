@@ -79,9 +79,9 @@
 		14DE9B36203D0AF800FE69FE /* DetectionList */ = {
 			isa = PBXGroup;
 			children = (
+				14DE9B3A203D0C6700FE69FE /* List.storyboard */,
 				14DE9B2F203D012E00FE69FE /* TableViewController.swift */,
 				14DE9B31203D01CA00FE69FE /* TableViewCell.swift */,
-				14DE9B3A203D0C6700FE69FE /* List.storyboard */,
 			);
 			path = DetectionList;
 			sourceTree = "<group>";
