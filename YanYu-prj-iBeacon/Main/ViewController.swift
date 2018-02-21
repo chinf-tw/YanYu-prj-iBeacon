@@ -34,6 +34,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserID.delegate = self
+        PassWord.delegate = self
         UserID.returnKeyType = UIReturnKeyType.next
         PassWord.returnKeyType = UIReturnKeyType.send
         
