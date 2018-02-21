@@ -7,18 +7,11 @@
 //
 
 import UIKit
-import CoreBluetooth
-import CoreLocation
 
-class TableViewController: UITableViewController, CLLocationManagerDelegate {
+class TableViewController: UITableViewController {
 
     var ListData:[String:Array<String>] = [:]
     var List:[[String:String]] = []
-    
-    let lm = CLLocationManager()
-    var uuid:UUID!
-    var Name:String!
-    var region:CLBeaconRegion!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +22,6 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate {
             }
             return
         }
-        
         
         let Report = "http://yanyu-chinf.azurewebsites.net/api/report"
         let data = "data=ID,reportname,reportbody".data(using: .utf8)
@@ -47,17 +39,6 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate {
                 self.tableView.reloadData()
             }
         })
-        
-        
-        lm.requestAlwaysAuthorization()
-        lm.delegate = self
-        
-        uuid = UUID(uuidString: "B5B182C7-EAB1-4988-AA99-B5C1517008D9")
-        
-        region = CLBeaconRegion(proximityUUID: uuid!, identifier: Name ?? "nil" )
-        
-        lm.startMonitoring(for: region)
-        //        lm.startRangingBeacons(in: region)
 
     }
     @IBAction func LoginOut(_ sender: Any) {
@@ -166,57 +147,4 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate {
     }
     */
 
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        
-        
-        for beacon in beacons {
-            print("\n major = \(beacon.major), minor = \(beacon.minor), accuracy = \(beacon.accuracy), rssi = \(beacon.rssi)")
-//            switch beacon.proximity {
-//            case .far:
-//                textLabel.text! += "\n beacon 距離遠"
-//            case .near:
-//                textLabel.text! += "\n beacon 距離近"
-//            case .unknown:
-//                textLabel.text! += "\n beacon 距離未知"
-//            case .immediate:
-//                textLabel.text! += "\n beacon 就在旁邊"
-//            }
-        }
-    }
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        switch state {
-        case .inside:
-            print("inside")
-        case .outside:
-            print("outside")
-        case .unknown:
-            print("unknown")
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        
-        if region is CLBeaconRegion {
-            // Start ranging only if the feature is available.
-            if CLLocationManager.isRangingAvailable() {
-                manager.startRangingBeacons(in: region as! CLBeaconRegion)
-                
-                // Store the beacon so that ranging can be stopped on demand.
-                //                beaconsToRange.append(region as! CLBeaconRegion)
-            }
-        }
-        print("Enter \(region.identifier)")
-        let alertController = UIAlertController(title: "iBeacon消息", message: "已進入iBeacon範圍內", preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        present(alertController,animated: true, completion: nil)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("Exit \(region.identifier)")
-        let alertController = UIAlertController(title: "iBeacon消息", message: "已離開iBeacon範圍", preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        present(alertController,animated: true, completion: nil)
-    }
-    
-    
 }

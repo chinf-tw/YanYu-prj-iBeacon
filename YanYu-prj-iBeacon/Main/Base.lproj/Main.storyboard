@@ -76,10 +76,9 @@
                                     <constraint firstAttribute="width" secondItem="n7G-Pl-G50" secondAttribute="height" multiplier="240:259" id="M5T-PN-qsA"/>
                                     <constraint firstItem="pwf-S1-gUE" firstAttribute="top" secondItem="efv-uu-sML" secondAttribute="bottom" constant="8" id="QhJ-e9-XkE"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="u7B-Et-3JE" secondAttribute="trailing" constant="10" id="YBd-Ra-PdY"/>
-                                    <constraint firstItem="Zac-V0-il4" firstAttribute="leading" secondItem="n7G-Pl-G50" secondAttribute="leadingMargin" constant="80" id="bqg-R6-98x"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Zac-V0-il4" secondAttribute="trailing" constant="80" id="iPk-r2-Bww"/>
                                     <constraint firstItem="Xbu-bn-fnx" firstAttribute="centerX" secondItem="n7G-Pl-G50" secondAttribute="centerX" id="qzQ-DZ-iw0"/>
                                     <constraint firstItem="bKV-dp-YSX" firstAttribute="centerX" secondItem="n7G-Pl-G50" secondAttribute="centerX" id="x6y-Lm-YpU"/>
+                                    <constraint firstItem="Zac-V0-il4" firstAttribute="centerX" secondItem="n7G-Pl-G50" secondAttribute="centerX" id="xjG-6g-xBd"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YanyuLogo" translatesAutoresizingMaskIntoConstraints="NO" id="bI2-0z-SEp">

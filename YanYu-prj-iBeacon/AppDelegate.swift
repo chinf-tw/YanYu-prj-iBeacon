@@ -8,15 +8,26 @@
 
 import UIKit
 import CoreData
+import CoreBluetooth
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
     var isLogin = UserDefaults.standard.bool(forKey: "session")
+    let lm = CLLocationManager()
+    var uuid:UUID!
+    var region:CLBeaconRegion!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        
+        
+        if CLLocationManager.isRangingAvailable() {
+            lm.requestAlwaysAuthorization()
+        }
         
         if isLogin {
             let controller = UIStoryboard(name: "List",bundle: nil).instantiateViewController(withIdentifier: "List")
@@ -26,9 +37,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = controller
         }
         
+        lm.delegate = self
+        
+        uuid = UUID(uuidString: "B5B182C7-EAB1-4988-AA99-B5C1517008D9")
+        region = CLBeaconRegion(proximityUUID: uuid!, identifier: "nil" )
+        lm.stopMonitoring(for: region)
+        region = CLBeaconRegion(proximityUUID: uuid!, identifier: "YanYu" )
+        lm.stopMonitoring(for: region)
+        lm.startMonitoring(for: region)
+//                lm.startRangingBeacons(in: region)
+        
         return true
     }
 
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        
+        
+        for beacon in beacons {
+            print("\n major = \(beacon.major), minor = \(beacon.minor), accuracy = \(beacon.accuracy), rssi = \(beacon.rssi)")
+            //            switch beacon.proximity {
+            //            case .far:
+            //                textLabel.text! += "\n beacon 距離遠"
+            //            case .near:
+            //                textLabel.text! += "\n beacon 距離近"
+            //            case .unknown:
+            //                textLabel.text! += "\n beacon 距離未知"
+            //            case .immediate:
+            //                textLabel.text! += "\n beacon 就在旁邊"
+            //            }
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        switch state {
+        case .inside:
+            print("inside \(region.identifier)")
+        case .outside:
+            print("outside \(region.identifier)")
+        case .unknown:
+            print("unknown \(region.identifier)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        
+        if region is CLBeaconRegion {
+            // Start ranging only if the feature is available.
+            if CLLocationManager.isRangingAvailable() {
+                manager.startRangingBeacons(in: region as! CLBeaconRegion)
+                
+                // Store the beacon so that ranging can be stopped on demand.
+                //                beaconsToRange.append(region as! CLBeaconRegion)
+            }
+        }
+        print("Enter \(region.identifier)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print("Exit \(region.identifier)")
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
