@@ -40,8 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         lm.delegate = self
         
         uuid = UUID(uuidString: "B5B182C7-EAB1-4988-AA99-B5C1517008D9")
-        region = CLBeaconRegion(proximityUUID: uuid!, identifier: "nil" )
-        lm.stopMonitoring(for: region)
         region = CLBeaconRegion(proximityUUID: uuid!, identifier: "YanYu" )
         lm.stopMonitoring(for: region)
         lm.startMonitoring(for: region)

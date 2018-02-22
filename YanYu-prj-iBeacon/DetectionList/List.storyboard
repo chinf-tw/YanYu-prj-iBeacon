@@ -19,18 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="155" id="hM0-IN-8U0" customClass="TableViewCell" customModule="YanYu_prj_iBeacon" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="155"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="150" id="hM0-IN-8U0" customClass="TableViewCell" customModule="YanYu_prj_iBeacon" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hM0-IN-8U0" id="60R-uc-TJQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="154.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRw-FE-3Xf" customClass="CardView" customModule="YanYu_prj_iBeacon" customModuleProvider="target">
-                                            <rect key="frame" x="27" y="13" width="320" height="129"/>
+                                            <rect key="frame" x="27" y="16" width="320" height="116"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="KVs-WK-rkJ">
-                                                    <rect key="frame" x="8" y="27" width="304" height="75.5"/>
+                                                    <rect key="frame" x="8" y="21" width="304" height="75.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqb-lE-V6K">
                                                             <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
@@ -57,14 +57,14 @@
                                             <constraints>
                                                 <constraint firstItem="KVs-WK-rkJ" firstAttribute="leading" secondItem="cRw-FE-3Xf" secondAttribute="leadingMargin" id="7X4-HY-udk"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="KVs-WK-rkJ" secondAttribute="trailing" id="UqW-hl-duE"/>
-                                                <constraint firstItem="KVs-WK-rkJ" firstAttribute="centerY" secondItem="cRw-FE-3Xf" secondAttribute="centerY" id="uNA-O0-jXG"/>
+                                                <constraint firstItem="KVs-WK-rkJ" firstAttribute="centerY" secondItem="cRw-FE-3Xf" secondAttribute="centerY" constant="0.75" id="uNA-O0-jXG"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="cRw-FE-3Xf" firstAttribute="top" secondItem="60R-uc-TJQ" secondAttribute="topMargin" constant="2" id="1vE-eA-hn7"/>
+                                        <constraint firstItem="cRw-FE-3Xf" firstAttribute="top" secondItem="60R-uc-TJQ" secondAttribute="topMargin" constant="5" id="1vE-eA-hn7"/>
                                         <constraint firstItem="cRw-FE-3Xf" firstAttribute="leading" secondItem="60R-uc-TJQ" secondAttribute="leadingMargin" constant="11" id="JLO-bL-aBN"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="cRw-FE-3Xf" secondAttribute="bottom" constant="2" id="Wkl-6k-fac"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="cRw-FE-3Xf" secondAttribute="bottom" constant="7" id="Wkl-6k-fac"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="cRw-FE-3Xf" secondAttribute="trailing" constant="12" id="elq-L6-5ii"/>
                                     </constraints>
                                 </tableViewCellContentView>

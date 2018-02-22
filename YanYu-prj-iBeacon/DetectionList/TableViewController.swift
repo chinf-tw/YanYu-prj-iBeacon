@@ -25,7 +25,7 @@ class TableViewController: UITableViewController {
             DataTask.init().requestWithModel(stringURL: Report, httpBody: data!, model: Model.HTTP.POST, completion: { (json) in
                 self.ListData = JsonData().getData(json: json)!
                 
-                for index in 0 ... (self.ListData.count-1) {
+                for index in 0 ... ((self.ListData.first?.value.count)!-1) {
                     self.List.append([:])
                     for (key,value) in self.ListData {
                         self.List[index][key] = value[index]
@@ -74,7 +74,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 155
+        return 150
     }
     
     // touch row
@@ -86,8 +86,6 @@ class TableViewController: UITableViewController {
             //            self.cardView.backgroundColor = .brown
             cell.cardView.bounds.size.width /= 0.98
             cell.cardView.bounds.size.height /= 0.98
-            //            self.cardView.frame.size.width *= 0.8
-            //            self.cardView.frame.size.height *= 0.8
         }, completion: nil)
     }
     
