@@ -57,10 +57,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Xbu-bn-fnx">
-                                        <rect key="frame" x="101.5" y="111" width="37" height="37"/>
-                                        <color key="color" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -69,7 +65,6 @@
                                     <constraint firstItem="u7B-Et-3JE" firstAttribute="leading" secondItem="n7G-Pl-G50" secondAttribute="leadingMargin" constant="10" id="2Pa-fM-g9l"/>
                                     <constraint firstItem="pwf-S1-gUE" firstAttribute="top" secondItem="Zac-V0-il4" secondAttribute="bottom" constant="32" id="5vU-Cr-jmm"/>
                                     <constraint firstItem="bKV-dp-YSX" firstAttribute="top" secondItem="u7B-Et-3JE" secondAttribute="bottom" constant="8" symbolic="YES" id="6Vh-UC-z7v"/>
-                                    <constraint firstItem="Xbu-bn-fnx" firstAttribute="centerY" secondItem="n7G-Pl-G50" secondAttribute="centerY" id="7hv-FW-Mjs"/>
                                     <constraint firstItem="efv-uu-sML" firstAttribute="centerX" secondItem="n7G-Pl-G50" secondAttribute="centerX" id="8zd-6a-QL2"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="pwf-S1-gUE" secondAttribute="trailing" constant="10" id="CPm-bZ-GSj"/>
                                     <constraint firstItem="Zac-V0-il4" firstAttribute="centerX" secondItem="n7G-Pl-G50" secondAttribute="centerX" id="Cqp-Ov-4br"/>
@@ -78,7 +73,6 @@
                                     <constraint firstItem="pwf-S1-gUE" firstAttribute="top" secondItem="efv-uu-sML" secondAttribute="bottom" constant="8" id="QhJ-e9-XkE"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="u7B-Et-3JE" secondAttribute="trailing" constant="10" id="YBd-Ra-PdY"/>
                                     <constraint firstItem="Zac-V0-il4" firstAttribute="leading" secondItem="n7G-Pl-G50" secondAttribute="leadingMargin" constant="80" id="bqg-R6-98x"/>
-                                    <constraint firstItem="Xbu-bn-fnx" firstAttribute="centerX" secondItem="n7G-Pl-G50" secondAttribute="centerX" id="qzQ-DZ-iw0"/>
                                     <constraint firstItem="bKV-dp-YSX" firstAttribute="centerX" secondItem="n7G-Pl-G50" secondAttribute="centerX" id="x6y-Lm-YpU"/>
                                 </constraints>
                             </view>
@@ -108,6 +102,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFg-Ss-7iM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="Xbu-bn-fnx">
+                    <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
             </objects>
             <point key="canvasLocation" x="-575.20000000000005" y="-295.50224887556226"/>
         </scene>

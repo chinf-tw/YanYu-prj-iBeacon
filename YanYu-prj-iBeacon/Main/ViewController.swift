@@ -18,6 +18,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func LoginClick(_ sender: Any) {
         
+        activity.center = view.center
+        view.addSubview(activity)
+        
         activity.startAnimating()
         
         let username = UserID.text
