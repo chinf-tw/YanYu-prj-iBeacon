@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7G-Pl-G50" customClass="CardView" customModule="YanYu_prj_iBeacon" customModuleProvider="target">
-                                <rect key="frame" x="67" y="205" width="240" height="259"/>
+                                <rect key="frame" x="67" y="166" width="240" height="259"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入帳號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pwf-S1-gUE">
                                         <rect key="frame" x="18" y="127" width="204" height="30"/>
@@ -77,19 +77,19 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YanyuLogo" translatesAutoresizingMaskIntoConstraints="NO" id="bI2-0z-SEp">
-                                <rect key="frame" x="125" y="40" width="125" height="119"/>
+                                <rect key="frame" x="137" y="51" width="100" height="95"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="LsJ-VI-HaN"/>
+                                    <constraint firstAttribute="width" constant="100" id="LsJ-VI-HaN"/>
                                     <constraint firstAttribute="width" secondItem="bI2-0z-SEp" secondAttribute="height" multiplier="125:119" id="f60-la-pUG"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="bI2-0z-SEp" firstAttribute="top" secondItem="FpP-2f-YXz" secondAttribute="top" constant="31" id="OMx-zU-BeI"/>
                             <constraint firstItem="bI2-0z-SEp" firstAttribute="centerX" secondItem="Owj-Iw-Sgu" secondAttribute="centerX" id="ReT-Qn-kpY"/>
                             <constraint firstItem="n7G-Pl-G50" firstAttribute="centerX" secondItem="Owj-Iw-Sgu" secondAttribute="centerX" id="RnY-3x-2xq"/>
-                            <constraint firstItem="n7G-Pl-G50" firstAttribute="firstBaseline" secondItem="bI2-0z-SEp" secondAttribute="baseline" multiplier="1.2" constant="14.200000000000017" id="VtJ-be-hix"/>
-                            <constraint firstItem="FpP-2f-YXz" firstAttribute="bottom" secondItem="n7G-Pl-G50" secondAttribute="bottom" constant="203" id="duo-oK-CkI"/>
+                            <constraint firstItem="n7G-Pl-G50" firstAttribute="firstBaseline" secondItem="bI2-0z-SEp" secondAttribute="baseline" multiplier="1.2" constant="-9.1999999999999886" id="VtJ-be-hix"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FpP-2f-YXz"/>
                     </view>
