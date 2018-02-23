@@ -17,6 +17,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var Body: UILabel!
     @IBOutlet weak var Location: UILabel!
     @IBOutlet weak var New: UILabel!
+    @IBOutlet weak var view: CardView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

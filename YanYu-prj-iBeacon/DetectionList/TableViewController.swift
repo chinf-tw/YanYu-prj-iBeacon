@@ -15,19 +15,22 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
 
     
     let app = UIApplication.shared.delegate as! AppDelegate
+    let lm = CLLocationManager()
+    
     var ibeacon: [Beacon] = []
+    var isThere_indexPath: Set<IndexPath> = []
     var viewContext: NSManagedObjectContext!
-    
-    
-    
-//    將報表從array暫存改放為CoreData，並且更改iBeacon使用時機，於顯示報表時，才進行
+    var fetchResultController: NSFetchedResultsController<Beacon>!
+    var isThere: [Bool] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let Report = "http://yanyu-chinf.azurewebsites.net/api/report"
         let reportField = ["ID","reportname","reportbody","iBeacon_Location","ReportUUID","major","minor"]
-        let lm = CLLocationManager()
+        
+        let fetchRequest: NSFetchRequest<Beacon> = Beacon.fetchRequest()
+        let sort = NSSortDescriptor(key: "reportID", ascending: true)
         
         var dataString = ""
         var dataString2 = ""
@@ -36,14 +39,21 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         var region:CLBeaconRegion!
         
         
+        
+        
         guard UserDefaults.standard.bool(forKey: "session") else{
             if let LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as? ViewController{
                 present(LoginViewController, animated: true, completion: nil)
             }
             return
         }
-        viewContext = app.persistentContainer.viewContext
         
+        
+        fetchRequest.sortDescriptors = [sort]
+        
+        viewContext = app.persistentContainer.viewContext
+        fetchResultController = NSFetchedResultsController.init(fetchRequest: fetchRequest, managedObjectContext: viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultController.delegate = self
         if CLLocationManager.isRangingAvailable() {
             lm.requestAlwaysAuthorization()
         }
@@ -52,9 +62,9 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         
         uuid = UUID(uuidString: "B5B182C7-EAB1-4988-AA99-B5C1517008D9")
         region = CLBeaconRegion(proximityUUID: uuid!, identifier: "YanYu" )
-        lm.stopMonitoring(for: region)
+//        lm.stopMonitoring(for: region)
         lm.startMonitoring(for: region)
-        //                lm.startRangingBeacons(in: region)
+        lm.startRangingBeacons(in: region)
         
         
         
@@ -65,20 +75,23 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         data = dataString2.data(using: .utf8)!
         
         
-        let fetchRequest: NSFetchRequest<Beacon> = Beacon.fetchRequest()
-        let sort = NSSortDescriptor(key: "reportID", ascending: true)
-        fetchRequest.sortDescriptors = [sort]
         
-        extractedFunc(Report, data,reportField)
-//        if let fetch = try? self.viewContext.fetch(fetchRequest) {
-//            ibeacon = fetch
-//            print("---place---")
-//            self.ibeacon.forEach({ (beacon) in
-//                print(beacon.reportID)
-//            })
-//        }else{
-//            extractedFunc(Report, data,reportField)
-//        }
+        
+        
+//        extractedFunc(Report, data,reportField)
+        if let fetch = try? self.viewContext.fetch(fetchRequest) {
+            ibeacon = fetch
+            print("---place---")
+            self.ibeacon.forEach({ (beacon) in
+                print(beacon.reportID)
+            })
+        }else{
+            extractedFunc(Report, data,reportField)
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
+            self.Therebegin()
+        }
 
     }
     @IBAction func LoginOut(_ sender: Any) {
@@ -96,7 +109,9 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-            return ibeacon.count
+        isThere = Array<Bool>.init(repeating: false, count: ibeacon.count)
+        
+        return ibeacon.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -134,6 +149,7 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
             //            self.cardView.frame.size.width *= 0.8
             //            self.cardView.frame.size.height *= 0.8
         }, completion: nil)
+        
     }
     
     /*---------------------------------------------iBeacon----------------------------------------------------*/
@@ -145,7 +161,15 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
                 
                 ibeacon.forEach({ (ibeacon) in
                     if ibeacon.reportUUID == beacon.proximityUUID, ibeacon.major == beacon.major.stringValue, ibeacon.minor == beacon.minor.stringValue {
-                        ibeacon.isThere = true
+                        let index = ibeacon.reportID.hashValue - 1
+                        let indexPath = IndexPath.init(row: index , section: 0)
+//                        tableView.beginUpdates()
+//                        tableView.reloadRows(at: [indexPath], with: .fade)
+//                        tableView.endUpdates()
+//                        cell.isUserInteractionEnabled = false
+                        isThere_indexPath.insert(indexPath)
+                        isThere[index] = true
+                        print(ibeacon.reportID)
                     }
                 })
             }
@@ -201,17 +225,19 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         print("Exit \(region.identifier)")
     }
     
+    /*---------------------------------------------END iBeacon----------------------------------------------------*/
     
     
-    
-    
+    /*---------------------------------------------CoreData----------------------------------------------------*/
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>){
+        self.tableView.beginUpdates()
         print("controllerWillChange")
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .update:
+            tableView.reloadRows(at: [indexPath!], with: .fade)
             print("update")
 //        case .insert:
 //
@@ -222,8 +248,15 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         default:
             print("default")
         }
+        if let fetchedObjects = controller.fetchedObjects {
+            ibeacon = fetchedObjects as! [Beacon]
+        }
     }
-
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
+/*---------------------------------------------END CoreData----------------------------------------------------*/
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -294,7 +327,7 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
                 user.reportUUID = UUID(uuidString: ListData[Field[4]]![index])
                 user.major = ListData[Field[5]]![index]
                 user.minor = ListData[Field[6]]![index]
-                user.isThere = false
+                
 
             }
             self.app.saveContext()
@@ -322,9 +355,34 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         cell.Name.text = "報表名稱 : \(ibeacon[indexPath.row].reportName ?? "無資料")"
         cell.Body.text = "報表內容 : \(ibeacon[indexPath.row].reportBody ?? "無資料")"
         cell.Location.text = "地區 : \(ibeacon[indexPath.row].iBeacon_Location ?? "無資料")"
-        cell.New.text = "是否到達位置 : \(ibeacon[indexPath.row].isThere ? "是" : "否")"
-
+        cell.New.text = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否")"
+        cell.view.backgroundColor = isThere[indexPath.row] ? UIColor.brown : UIColor.white
+        cell.isUserInteractionEnabled = isThere[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
     }
 
+    func Therebegin(){
+        
+        
+        isThere_indexPath.forEach { (indexPath) in
+            
+            
+            if let cell = tableView.cellForRow(at: indexPath) as? TableViewCell {
+                cell.New.text = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否")"
+                cell.view.backgroundColor = isThere[indexPath.row] ? UIColor.brown : UIColor.clear
+                cell.isUserInteractionEnabled = isThere[indexPath.row]
+
+            }
+        }
+
+        print("begin \(isThere_indexPath)")
+
+        isThere_indexPath.removeAll()
+        isThere.removeAll()
+        isThere = Array<Bool>.init(repeating: false, count: ibeacon.count)
+        
+    }
+    
+    
+    
 }
