@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141690132043CE8600C97AE8 /* ThereModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141690122043CE8600C97AE8 /* ThereModel.swift */; };
 		14DE9B19203CFF8200FE69FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B18203CFF8200FE69FE /* AppDelegate.swift */; };
 		14DE9B1B203CFF8200FE69FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B1A203CFF8200FE69FE /* ViewController.swift */; };
 		14DE9B1E203CFF8200FE69FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9B1C203CFF8200FE69FE /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		141690122043CE8600C97AE8 /* ThereModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThereModel.swift; sourceTree = "<group>"; };
 		14DE9B15203CFF8200FE69FE /* YanYu-prj-iBeacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YanYu-prj-iBeacon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14DE9B18203CFF8200FE69FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14DE9B1A203CFF8200FE69FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				14DE9B3A203D0C6700FE69FE /* List.storyboard */,
 				14DE9B2F203D012E00FE69FE /* TableViewController.swift */,
 				14DE9B31203D01CA00FE69FE /* TableViewCell.swift */,
+				141690122043CE8600C97AE8 /* ThereModel.swift */,
 			);
 			path = DetectionList;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				14DE9B19203CFF8200FE69FE /* AppDelegate.swift in Sources */,
 				14DE9B2E203D00B400FE69FE /* CardView.swift in Sources */,
 				14DE9B41203D250100FE69FE /* Model.swift in Sources */,
+				141690132043CE8600C97AE8 /* ThereModel.swift in Sources */,
 				14DE9B3D203D21DF00FE69FE /* Internet.swift in Sources */,
 				14DE9B32203D01CA00FE69FE /* TableViewCell.swift in Sources */,
 				14DE9B3F203D23DA00FE69FE /* JsonData.swift in Sources */,

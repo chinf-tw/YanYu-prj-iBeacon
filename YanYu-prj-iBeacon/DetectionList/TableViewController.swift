@@ -22,6 +22,7 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
     var viewContext: NSManagedObjectContext!
     var fetchResultController: NSFetchedResultsController<Beacon>!
     var isThere: [Bool] = []
+    var tigger = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         var region:CLBeaconRegion!
         
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.Therebegin(_:)), name: Notification.Name("Therebegin"), object: nil)
         
         guard UserDefaults.standard.bool(forKey: "session") else{
             if let LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as? ViewController{
@@ -79,7 +80,7 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         
         
 //        extractedFunc(Report, data,reportField)
-        if let fetch = try? self.viewContext.fetch(fetchRequest) {
+        if let fetch = try? self.viewContext.fetch(fetchRequest), !(fetch.isEmpty) {
             ibeacon = fetch
             print("---place---")
             self.ibeacon.forEach({ (beacon) in
@@ -89,9 +90,9 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
             extractedFunc(Report, data,reportField)
         }
         
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
-            self.Therebegin()
-        }
+//        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
+//            self.Therebegin()
+//        }
 
     }
     @IBAction func LoginOut(_ sender: Any) {
@@ -157,35 +158,24 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
 
         if ibeacon.count > 1 {
+            isThere.removeAll()
+            isThere = Array<Bool>.init(repeating: false, count: ibeacon.count)
             for beacon in beacons {
                 
                 ibeacon.forEach({ (ibeacon) in
                     if ibeacon.reportUUID == beacon.proximityUUID, ibeacon.major == beacon.major.stringValue, ibeacon.minor == beacon.minor.stringValue {
                         let index = ibeacon.reportID.hashValue - 1
                         let indexPath = IndexPath.init(row: index , section: 0)
-//                        tableView.beginUpdates()
-//                        tableView.reloadRows(at: [indexPath], with: .fade)
-//                        tableView.endUpdates()
-//                        cell.isUserInteractionEnabled = false
+                        
                         isThere_indexPath.insert(indexPath)
                         isThere[index] = true
-                        print(ibeacon.reportID)
+//                        print(ibeacon.reportID)
                     }
                 })
             }
-        
-            
-            //            switch beacon.proximity {
-            //            case .far:
-            //                textLabel.text! += "\n beacon 距離遠"
-            //            case .near:
-            //                textLabel.text! += "\n beacon 距離近"
-            //            case .unknown:
-            //                textLabel.text! += "\n beacon 距離未知"
-            //            case .immediate:
-            //                textLabel.text! += "\n beacon 就在旁邊"
-            //            }
         }
+        NotificationCenter.default.post(name: NSNotification.Name("Therebegin"), object: tigger)
+        tigger += 1
     }
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         switch state {
@@ -358,28 +348,47 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         cell.New.text = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否")"
         cell.view.backgroundColor = isThere[indexPath.row] ? UIColor.brown : UIColor.white
         cell.isUserInteractionEnabled = isThere[indexPath.row]
+        
         cell.selectionStyle = UITableViewCellSelectionStyle.none
     }
 
-    func Therebegin(){
+    @objc func Therebegin(_ notification : Notification){
         
-        
-        isThere_indexPath.forEach { (indexPath) in
-            
-            
-            if let cell = tableView.cellForRow(at: indexPath) as? TableViewCell {
-                cell.New.text = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否")"
-                cell.view.backgroundColor = isThere[indexPath.row] ? UIColor.brown : UIColor.clear
-                cell.isUserInteractionEnabled = isThere[indexPath.row]
-
+        if let num = notification.object as? Int {
+            print(num)
+            if num > 10 {
+                print(isThere)
+                tigger = 0
+                var indexPath : IndexPath
+                tableView.beginUpdates()
+                for index in 0 ... isThere.count-1 {
+                    indexPath = IndexPath.init(row: index , section: 0)
+                    if let cell = tableView.cellForRow(at: indexPath) as? TableViewCell {
+                        cell.New.text = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否")"
+                        cell.view.backgroundColor = isThere[indexPath.row] ? UIColor.brown : UIColor.white
+                        cell.isUserInteractionEnabled = isThere[indexPath.row]
+                        //                tableView.reloadRows(at: [indexPath], with: .none)
+                    }
+                }
+                
+                tableView.endUpdates()
             }
         }
-
-        print("begin \(isThere_indexPath)")
+        
+        if notification.object is IndexPath {
+            let indexPath = notification.object as! IndexPath
+            if let cell = tableView.cellForRow(at: indexPath) as? TableViewCell {
+                cell.New.text = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否")"
+                cell.view.backgroundColor = isThere[indexPath.row] ? UIColor.brown : UIColor.white
+                cell.isUserInteractionEnabled = isThere[indexPath.row]
+                //                tableView.reloadRows(at: [indexPath], with: .none)
+            }
+        }
+        
+//        print("begin \(isThere_indexPath)")
 
         isThere_indexPath.removeAll()
-        isThere.removeAll()
-        isThere = Array<Bool>.init(repeating: false, count: ibeacon.count)
+        
         
     }
     

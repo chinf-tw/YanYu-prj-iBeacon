@@ -10,18 +10,18 @@ import UIKit
 
 @IBDesignable class CardView: UIView {
 
-    @IBInspectable var corenerradius : CGFloat = 2
+    @IBInspectable var corenerradius : CGFloat = 5
     
     @IBInspectable var shadowOffSetWidth : CGFloat = 0
     
-    @IBInspectable var shadowOffSetHeight : CGFloat = 3
+    @IBInspectable var shadowOffSetHeight : CGFloat = 5
     
     @IBInspectable var shadowColor : UIColor = UIColor.lightGray
     
     @IBInspectable var shadowOpacity : CGFloat = 5
     
     override func layoutSubviews() {
-        layer.cornerRadius = corenerradius
+        layer.cornerRadius = corenerradius // 圓角的弧度
         
         layer.shadowColor = shadowColor.cgColor
         
@@ -32,8 +32,6 @@ import UIKit
         layer.shadowPath = shadowPath.cgPath
         
         layer.shadowOpacity = Float(shadowOpacity)
-        
-        layer.cornerRadius = 5; // 圓角的弧度123456
         
     }
     
