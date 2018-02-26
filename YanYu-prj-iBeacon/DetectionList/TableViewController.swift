@@ -345,13 +345,27 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
         cell.Name.text = "報表名稱 : \(ibeacon[indexPath.row].reportName ?? "無資料")"
         cell.Body.text = "報表內容 : \(ibeacon[indexPath.row].reportBody ?? "無資料")"
         cell.Location.text = "地區 : \(ibeacon[indexPath.row].iBeacon_Location ?? "無資料")"
-        cell.New.text = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否")"
-        cell.view.backgroundColor = isThere[indexPath.row] ? UIColor.brown : UIColor.white
-        cell.isUserInteractionEnabled = isThere[indexPath.row]
+        
+        extractedFunc2(cell, indexPath)
         
         cell.selectionStyle = UITableViewCellSelectionStyle.none
     }
 
+    fileprivate func extractedFunc2(_ cell: TableViewCell, _ indexPath: IndexPath) {
+        
+            self.ThereModel_j(indexPath: indexPath)
+            cell.New.text = ThereModel.Location
+            cell.view.backgroundColor = ThereModel.backgriundColor
+            cell.isUserInteractionEnabled = ThereModel.isUserInteractionEnabled
+        
+    }
+    
+    func ThereModel_j (indexPath: IndexPath){
+        ThereModel.Location = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否") \(indexPath.row)"
+        ThereModel.backgriundColor = isThere[indexPath.row] ? UIColor.blue : UIColor.white
+        ThereModel.isUserInteractionEnabled = isThere[indexPath.row]
+    }
+    
     @objc func Therebegin(_ notification : Notification){
         
         if let num = notification.object as? Int {
@@ -360,35 +374,26 @@ class TableViewController: UITableViewController, CLLocationManagerDelegate, NSF
                 print(isThere)
                 tigger = 0
                 var indexPath : IndexPath
-                tableView.beginUpdates()
                 for index in 0 ... isThere.count-1 {
+                    
                     indexPath = IndexPath.init(row: index , section: 0)
                     if let cell = tableView.cellForRow(at: indexPath) as? TableViewCell {
-                        cell.New.text = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否")"
-                        cell.view.backgroundColor = isThere[indexPath.row] ? UIColor.brown : UIColor.white
-                        cell.isUserInteractionEnabled = isThere[indexPath.row]
-                        //                tableView.reloadRows(at: [indexPath], with: .none)
+                        extractedFunc2(cell,indexPath)
                     }
+                    
+                    
                 }
-                
-                tableView.endUpdates()
             }
         }
         
         if notification.object is IndexPath {
             let indexPath = notification.object as! IndexPath
+            
             if let cell = tableView.cellForRow(at: indexPath) as? TableViewCell {
-                cell.New.text = "是否到達位置 : \(isThere[indexPath.row] ? "是" : "否")"
-                cell.view.backgroundColor = isThere[indexPath.row] ? UIColor.brown : UIColor.white
-                cell.isUserInteractionEnabled = isThere[indexPath.row]
-                //                tableView.reloadRows(at: [indexPath], with: .none)
+                extractedFunc2(cell,indexPath)
             }
         }
-        
-//        print("begin \(isThere_indexPath)")
-
         isThere_indexPath.removeAll()
-        
         
     }
     
