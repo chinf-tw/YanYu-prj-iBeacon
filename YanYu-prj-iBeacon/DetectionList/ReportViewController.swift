@@ -30,7 +30,7 @@ class ReportViewController: UIViewController{
     var isThere: [Bool] = []
     var trigger = 0
     var seatchTimer: Timer?
-    var isAutoSeatch:Bool = false
+    var isSeatch:Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +102,7 @@ class ReportViewController: UIViewController{
         let uuid = UUID(uuidString: "B5B182C7-EAB1-4988-AA99-B5C1517008D9")
         let region = CLBeaconRegion(proximityUUID: uuid!, identifier: "YanYu" )
         var runtime:Double = 0.0
-        var autostop: Bool = false
+        
         lm.startRangingBeacons(in: region)
         
         ibeacon_seatch.isEnabled = false
@@ -110,18 +110,13 @@ class ReportViewController: UIViewController{
         Progress.isHidden = false
         progressNumber_label.isHidden = false
         
-        if repeats {
-            
-        autostop = !isAutoSeatch
-            
-        }
         
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
             runtime += 0.1
             self.Progress.progress = Float(runtime/TimeInterval)
             self.progressNumber_label.text = String(runtime)
             
-            if runtime >= TimeInterval || autostop {
+            if runtime >= TimeInterval || (!self.isSeatch && repeats) {
                 
                 self.lm.stopRangingBeacons(in: region)
                 self.ibeacon_seatch.isEnabled = true
@@ -129,6 +124,11 @@ class ReportViewController: UIViewController{
                 self.Therebegin()
                 self.Progress.isHidden = true
                 self.progressNumber_label.isHidden = true
+                if !self.isSeatch {
+                    Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { (timer) in
+                        self.Beacons_label.isHidden = true
+                    })
+                }
                 
                 timer.invalidate()
             }
@@ -144,9 +144,9 @@ class ReportViewController: UIViewController{
     @IBAction func iBeacon_autoSeatch(_ sender: Any) {
  
         
-        if isAutoSeatch {
+        if isSeatch {
             self.iBeacon_autoSeatch.setTitle("自動尋找", for: .normal)
-            isAutoSeatch = false
+            isSeatch = false
             if let seatchTimer = seatchTimer {
                 seatchTimer.invalidate()
             }
@@ -154,12 +154,24 @@ class ReportViewController: UIViewController{
         }else{
             
             self.iBeacon_autoSeatch.setTitle("自動尋找中", for: .normal)
-            isAutoSeatch = true
+            isSeatch = true
             seatchTimer = Timer.scheduledTimer(withTimeInterval: 3.3, repeats: true) { (timer) in
                 self.iBeacon_Seatch(3,repeats: true)
             }
         }
         
+        
+    }
+    @IBAction func LoginOut(_ sender: Any) {
+        
+        UserDefaults.standard.removeObject(forKey: "session")
+        
+        guard UserDefaults.standard.bool(forKey: "session") else{
+            if let LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as? ViewController{
+                present(LoginViewController, animated: true, completion: nil)
+            }
+            return
+        }
         
     }
     
@@ -313,7 +325,9 @@ extension ReportViewController: CLLocationManagerDelegate {
     /*---------------------------------------------iBeacon----------------------------------------------------*/
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        
+        Beacons_label.text = "iBeacon數 : \(beacons.count)"
+        Beacons_label.isHidden = false
+
         if ibeacon.count > 1 {
             isThere.removeAll()
             isThere = Array<Bool>.init(repeating: false, count: ibeacon.count)

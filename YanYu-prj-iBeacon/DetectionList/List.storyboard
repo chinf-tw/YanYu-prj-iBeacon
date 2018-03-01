@@ -289,7 +289,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kem-S6-mF9">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kem-S6-mF9">
                                         <rect key="frame" x="325" y="24.5" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -330,7 +330,11 @@
                                 <action selector="iBeacon_search:" destination="kGs-uF-MQe" id="sBG-23-ClR"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="登出" id="6nd-Bg-sdb"/>
+                        <barButtonItem key="rightBarButtonItem" title="登出" id="6nd-Bg-sdb">
+                            <connections>
+                                <action selector="LoginOut:" destination="kGs-uF-MQe" id="rZY-vc-udU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="Beacons_label" destination="kem-S6-mF9" id="vLZ-K8-fVs"/>
