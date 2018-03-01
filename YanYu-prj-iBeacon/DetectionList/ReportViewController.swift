@@ -114,7 +114,7 @@ class ReportViewController: UIViewController{
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
             runtime += 0.1
             self.Progress.progress = Float(runtime/TimeInterval)
-            self.progressNumber_label.text = String(runtime)
+            self.progressNumber_label.text = "\(Int(runtime*100/TimeInterval)) %"
             
             if runtime >= TimeInterval || (!self.isSeatch && repeats) {
                 
