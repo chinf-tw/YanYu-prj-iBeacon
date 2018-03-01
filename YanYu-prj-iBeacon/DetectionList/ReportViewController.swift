@@ -17,14 +17,20 @@ class ReportViewController: UIViewController{
     let lm = CLLocationManager()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var actit: UIActivityIndicatorView!
     @IBOutlet weak var ibeacon_seatch: UIBarButtonItem!
+    @IBOutlet weak var iBeacon_autoSeatch: UIButton!
+    @IBOutlet weak var Progress: UIProgressView!
+    @IBOutlet weak var progressNumber_label: UILabel!
+    @IBOutlet weak var Beacons_label: UILabel!
+    
     var ibeacon: [Beacon] = []
     var isThere_indexPath: Set<IndexPath> = []
     var viewContext: NSManagedObjectContext!
     var fetchResultController: NSFetchedResultsController<Beacon>!
     var isThere: [Bool] = []
-    var tigger = 0
+    var trigger = 0
+    var seatchTimer: Timer?
+    var isAutoSeatch:Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +57,7 @@ class ReportViewController: UIViewController{
         fetchRequest.sortDescriptors = [sort]
         
         viewContext = app.persistentContainer.viewContext
-        
+        tableView.separatorStyle = .none
         if CLLocationManager.isRangingAvailable() {
             lm.requestAlwaysAuthorization()
         }
@@ -77,10 +83,10 @@ class ReportViewController: UIViewController{
         //        extractedFunc(Report, data,reportField)
         if let fetch = try? self.viewContext.fetch(fetchRequest), !(fetch.isEmpty) {
             ibeacon = fetch
-            print("---place---")
-            self.ibeacon.forEach({ (beacon) in
-                print(beacon.reportID)
-            })
+//            print("---place---")
+//            self.ibeacon.forEach({ (beacon) in
+//                print(beacon.reportID)
+//            })
         }else{
             extractedFunc(Report, data,reportField)
         }
@@ -92,24 +98,71 @@ class ReportViewController: UIViewController{
     }
     
     
-    @IBAction func iBeacon_search(_ sender: Any) {
+    fileprivate func iBeacon_Seatch(_ TimeInterval: Double, repeats: Bool) {
         let uuid = UUID(uuidString: "B5B182C7-EAB1-4988-AA99-B5C1517008D9")
         let region = CLBeaconRegion(proximityUUID: uuid!, identifier: "YanYu" )
+        var runtime:Double = 0.0
+        var autostop: Bool = false
         lm.startRangingBeacons(in: region)
-        actit.center = view.center
-        actit.startAnimating()
+        
         ibeacon_seatch.isEnabled = false
         ibeacon_seatch.title = "尋找中"
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
-            self.actit.stopAnimating()
-            self.lm.stopRangingBeacons(in: region)
-            self.ibeacon_seatch.isEnabled = true
-            self.ibeacon_seatch.title = "尋找"
-            self.Therebegin()
+        Progress.isHidden = false
+        progressNumber_label.isHidden = false
+        
+        if repeats {
+            
+        autostop = !isAutoSeatch
+            
         }
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+            runtime += 0.1
+            self.Progress.progress = Float(runtime/TimeInterval)
+            self.progressNumber_label.text = String(runtime)
+            
+            if runtime >= TimeInterval || autostop {
+                
+                self.lm.stopRangingBeacons(in: region)
+                self.ibeacon_seatch.isEnabled = true
+                self.ibeacon_seatch.title = "尋找"
+                self.Therebegin()
+                self.Progress.isHidden = true
+                self.progressNumber_label.isHidden = true
+                
+                timer.invalidate()
+            }
+        }
+        
+        
     }
     
-
+    @IBAction func iBeacon_search(_ sender: Any) {
+        iBeacon_Seatch(2,repeats: false)
+    }
+    
+    @IBAction func iBeacon_autoSeatch(_ sender: Any) {
+ 
+        
+        if isAutoSeatch {
+            self.iBeacon_autoSeatch.setTitle("自動尋找", for: .normal)
+            isAutoSeatch = false
+            if let seatchTimer = seatchTimer {
+                seatchTimer.invalidate()
+            }
+            
+        }else{
+            
+            self.iBeacon_autoSeatch.setTitle("自動尋找中", for: .normal)
+            isAutoSeatch = true
+            seatchTimer = Timer.scheduledTimer(withTimeInterval: 3.3, repeats: true) { (timer) in
+                self.iBeacon_Seatch(3,repeats: true)
+            }
+        }
+        
+        
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -156,7 +209,7 @@ class ReportViewController: UIViewController{
                 fetchRequest.sortDescriptors = [sort]
                 self.ibeacon = try self.viewContext.fetch(fetchRequest)
                 self.ibeacon.forEach({ (beacon) in
-                    print(beacon.reportID)
+//                    print(beacon.reportID)
                 })
             }catch{
                 
@@ -192,8 +245,8 @@ class ReportViewController: UIViewController{
     
     func Therebegin(){
         
-        print(isThere)
-        tigger = 0
+//        print(isThere)
+        trigger = 0
         var indexPath : IndexPath
         for index in 0 ... isThere.count-1 {
             
@@ -226,7 +279,7 @@ extension ReportViewController: UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 290
     }
     
     // touch row
@@ -278,6 +331,7 @@ extension ReportViewController: CLLocationManagerDelegate {
                 })
             }
         }
+        
     }
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         switch state {
