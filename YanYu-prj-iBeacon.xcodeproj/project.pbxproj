@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		141690132043CE8600C97AE8 /* ThereModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141690122043CE8600C97AE8 /* ThereModel.swift */; };
 		145F0A512043EF8E006E07FE /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145F0A502043EF8E006E07FE /* ReportViewController.swift */; };
 		145F0A532043F514006E07FE /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145F0A522043F514006E07FE /* ReportTableViewCell.swift */; };
+		14D60D622047E7C7004A7BA0 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 14D60D602047E7C7004A7BA0 /* lock.png */; };
+		14D60D632047E7C7004A7BA0 /* YanyuLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 14D60D612047E7C7004A7BA0 /* YanyuLogo.png */; };
 		14DE9B19203CFF8200FE69FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B18203CFF8200FE69FE /* AppDelegate.swift */; };
 		14DE9B1B203CFF8200FE69FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B1A203CFF8200FE69FE /* ViewController.swift */; };
 		14DE9B1E203CFF8200FE69FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9B1C203CFF8200FE69FE /* Main.storyboard */; };
@@ -17,8 +18,6 @@
 		14DE9B23203CFF8300FE69FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9B22203CFF8300FE69FE /* Assets.xcassets */; };
 		14DE9B26203CFF8300FE69FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9B24203CFF8300FE69FE /* LaunchScreen.storyboard */; };
 		14DE9B2E203D00B400FE69FE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B2D203D00B400FE69FE /* CardView.swift */; };
-		14DE9B30203D012E00FE69FE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B2F203D012E00FE69FE /* TableViewController.swift */; };
-		14DE9B32203D01CA00FE69FE /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B31203D01CA00FE69FE /* TableViewCell.swift */; };
 		14DE9B3B203D0C6700FE69FE /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9B3A203D0C6700FE69FE /* List.storyboard */; };
 		14DE9B3D203D21DF00FE69FE /* Internet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B3C203D21DF00FE69FE /* Internet.swift */; };
 		14DE9B3F203D23DA00FE69FE /* JsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9B3E203D23DA00FE69FE /* JsonData.swift */; };
@@ -26,9 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		141690122043CE8600C97AE8 /* ThereModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThereModel.swift; sourceTree = "<group>"; };
 		145F0A502043EF8E006E07FE /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		145F0A522043F514006E07FE /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
+		14D60D602047E7C7004A7BA0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		14D60D612047E7C7004A7BA0 /* YanyuLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YanyuLogo.png; sourceTree = "<group>"; };
 		14DE9B15203CFF8200FE69FE /* YanYu-prj-iBeacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YanYu-prj-iBeacon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14DE9B18203CFF8200FE69FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14DE9B1A203CFF8200FE69FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,8 +38,6 @@
 		14DE9B25203CFF8300FE69FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14DE9B27203CFF8300FE69FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14DE9B2D203D00B400FE69FE /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		14DE9B2F203D012E00FE69FE /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		14DE9B31203D01CA00FE69FE /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		14DE9B3A203D0C6700FE69FE /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 		14DE9B3C203D21DF00FE69FE /* Internet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internet.swift; sourceTree = "<group>"; };
 		14DE9B3E203D23DA00FE69FE /* JsonData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
@@ -57,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14D60D5F2047E4EE004A7BA0 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				14D60D602047E7C7004A7BA0 /* lock.png */,
+				14D60D612047E7C7004A7BA0 /* YanyuLogo.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		14DE9B0C203CFF8200FE69FE = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +83,7 @@
 		14DE9B17203CFF8200FE69FE /* YanYu-prj-iBeacon */ = {
 			isa = PBXGroup;
 			children = (
+				14D60D5F2047E4EE004A7BA0 /* image */,
 				14DE9B18203CFF8200FE69FE /* AppDelegate.swift */,
 				14DE9B2D203D00B400FE69FE /* CardView.swift */,
 				14DE9B39203D0BC800FE69FE /* Main */,
@@ -95,11 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				14DE9B3A203D0C6700FE69FE /* List.storyboard */,
-				14DE9B2F203D012E00FE69FE /* TableViewController.swift */,
 				145F0A502043EF8E006E07FE /* ReportViewController.swift */,
-				14DE9B31203D01CA00FE69FE /* TableViewCell.swift */,
 				145F0A522043F514006E07FE /* ReportTableViewCell.swift */,
-				141690122043CE8600C97AE8 /* ThereModel.swift */,
 			);
 			path = DetectionList;
 			sourceTree = "<group>";
@@ -173,7 +178,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				14DE9B26203CFF8300FE69FE /* LaunchScreen.storyboard in Resources */,
+				14D60D622047E7C7004A7BA0 /* lock.png in Resources */,
 				14DE9B23203CFF8300FE69FE /* Assets.xcassets in Resources */,
+				14D60D632047E7C7004A7BA0 /* YanyuLogo.png in Resources */,
 				14DE9B1E203CFF8200FE69FE /* Main.storyboard in Resources */,
 				14DE9B3B203D0C6700FE69FE /* List.storyboard in Resources */,
 			);
@@ -192,11 +199,8 @@
 				145F0A532043F514006E07FE /* ReportTableViewCell.swift in Sources */,
 				14DE9B41203D250100FE69FE /* Model.swift in Sources */,
 				145F0A512043EF8E006E07FE /* ReportViewController.swift in Sources */,
-				141690132043CE8600C97AE8 /* ThereModel.swift in Sources */,
 				14DE9B3D203D21DF00FE69FE /* Internet.swift in Sources */,
-				14DE9B32203D01CA00FE69FE /* TableViewCell.swift in Sources */,
 				14DE9B3F203D23DA00FE69FE /* JsonData.swift in Sources */,
-				14DE9B30203D012E00FE69FE /* TableViewController.swift in Sources */,
 				14DE9B21203CFF8300FE69FE /* YanYu_prj_iBeacon.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
